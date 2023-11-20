@@ -14,6 +14,7 @@
     $requete = "SELECT * from client;";
     $res = pg_query($connection, $requete);
     if($res) {
+        echo "<th>" . "okaaaaay";
         $n = pg_num_fields($res);
         echo "<tr>";
         for($i = 0; $i < $n; $i++) {
