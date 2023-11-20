@@ -9,7 +9,7 @@
 ?>
     <table>
 <?php
-    $requete = "SELECT * from clients;";
+    $requete = "SELECT * from client;";
     $res = pg_query($connection, $requete);
     if($res) {
         $n = pg_num_fields($res);
@@ -19,10 +19,10 @@
         }
         echo "</tr>";
 
-        while($clients = pg_fetch_array($res)) {
+        while($client = pg_fetch_array($res)) {
             echo "<tr>";
             for($i = 0; $i < $n; $i++) {
-                echo "<td>" . $clients[$i] . "</td>";
+                echo "<td>" . $client[$i] . "</td>";
             }
             echo "</tr>";
         }
