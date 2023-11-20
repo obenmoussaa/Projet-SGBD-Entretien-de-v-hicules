@@ -4,6 +4,8 @@
  </head>
  <body>
    <h2>Exemple de requ&ecirc;te php PostgreSQL</h2>
+   <h2>Exemple hahahahahahahah</h2>
+
 <?php
     include "connect_pg.php"; /* Le fichier connect_pg.php contient la connexion à la base de données PostgreSQL */
 ?>
