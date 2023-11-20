@@ -22,7 +22,7 @@
         while($acteur = pg_fetch_array($res)) {
             echo "<tr>";
             for($i = 0; $i < $n; $i++) {
-                echo "<td>" . $acteur[$i] . "</td>";
+                echo "<td>" . $clients[$i] . "</td>";
             }
             echo "</tr>";
         }
