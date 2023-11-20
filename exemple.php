@@ -19,7 +19,7 @@
         }
         echo "</tr>";
 
-        while($acteur = pg_fetch_array($res)) {
+        while($clients = pg_fetch_array($res)) {
             echo "<tr>";
             for($i = 0; $i < $n; $i++) {
                 echo "<td>" . $clients[$i] . "</td>";
