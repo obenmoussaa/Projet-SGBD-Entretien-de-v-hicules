@@ -1,39 +1,86 @@
 <html>
- <head>
-  <title>PHP Test</title>
- </head>
- <body>
-   <h2>Exemple de requ&ecirc;te php PostgreSQL</h2>
-   <h2>Exemple hahahahahahahah</h2>
 
-<?php
-    include "connect_pg.php"; /* Le fichier connect_pg.php contient la connexion à la base de données PostgreSQL */
-?>
-    <table>
-<?php
-    $requete = "SELECT * from client;";
-    $res = pg_query($connection, $requete);
-    if($res) {
-        echo "<th>" . "okaaaaay";
+<head>
+    <title>PHP Test</title>
+</head>
+
+<body>
+    <h2>Exemple de requ&ecirc;te php PostgreSQL</h2>
+    <?php
+    // error_reporting(E_ALL);
+    // ini_set('display_errors', 1);
+    include "connect_pg.php";
+    //cette fonction affiche les colonnes du resultat d une requtte
+    function print_nom_colonnes($res)
+    {
         $n = pg_num_fields($res);
-        echo "<tr>";
-        for($i = 0; $i < $n; $i++) {
-            echo "<th>" . pg_field_name($res, $i) . " (" . pg_field_type($res, $i) . ")</th>";
+        for ($i = 0; $i < $n; $i++) {
+            echo "<th>";
+            echo pg_field_name($res, $i);
+            echo "(";
+            echo pg_field_type($res, $i);
+            echo ")</th>";
         }
-        echo "</tr>";
-
-        while($client = pg_fetch_array($res)) {
-            echo "<tr>";
-            for($i = 0; $i < $n; $i++) {
-                echo "<td>" . $client[$i] . "</td>";
-            }
-            echo "</tr>";
-        }
-        pg_free_result($res);
     }
-    /* Fermeture de la connexion avec la base */
+    //cette fonction affiche les lignes du resultat d une requette
+    function print_lignes($res)
+    {
+        $n = pg_num_fields($res);
+        while ($client = pg_fetch_array($res)) {
+            echo "<tr>";
+            for ($i = 0; $i < $n; $i++) {
+                echo "<td>";
+                echo $client[$i];
+                echo "</td>";
+            }
+            echo "</tr>" . "\n";
+        }
+        return;
+    }
+    //cette focntion affiche le resultat d une requtte
+    function print_requete($connection, $requete)
+    {
+        $res = pg_query($connection, $requete);
+
+        if ($res) {
+            ?>
+            <table>
+                <tr>
+                    <?php   
+                    print_nom_colonnes($res);
+                    ?>
+                </tr>
+                <?php  
+                print_lignes($res);
+                pg_free_result($res);
+            ?>
+            </table>
+            <?php
+        }
+
+    }
+
+    // Utilisation de la fonction print_requete avec votre requête
+    $requete = "SELECT * FROM client;";
+    $requette2 = "SELECT
+        c.numero_client,
+        c.nom_client,
+        c.prenom_client,
+        COUNT(v.numero_immatricule) AS nombre_vehicules
+        FROM
+            client c
+        LEFT JOIN
+            vehicule v ON c.numero_client = v.client_numero
+        GROUP BY
+            c.numero_client, c.nom_client, c.prenom_client
+        ORDER BY
+            c.numero_client;";
+    print_requete($connection, $requete);
+    
+    print_requete($connection,$requette2);
     pg_close($connection);
-?>
-    </table>
- </body>
+
+    ?>
+</body>
+
 </html>

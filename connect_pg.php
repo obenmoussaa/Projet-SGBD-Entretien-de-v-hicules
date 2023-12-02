@@ -1,4 +1,4 @@
-<?php
+
   $login = 'mmedghali'   /*A compléter*/;
   $db_pwd = 'Majid123.'  /*A compléter*/;
   /* Creation de l'objet qui gere la connexion: */
