@@ -14,103 +14,144 @@ VALUES
     (10, 'Leroy', 'Christine', 'christine.leroy@email.com', '+33 6 56 78 90 12'),
     (11, 'Roux', 'David', 'david.roux@email.com', '+33 6 78 90 12 34'),
     (12, 'Leclerc', 'Catherine', 'catherine.leclerc@email.com', '+33 6 90 12 34 56'),
-    (40, 'Marchand', 'Thierry', 'thierry.marchand@email.com', '+33 6 87 65 43 21');
+    (14, 'Marchand', 'Thierry', 'thierry.marchand@email.com', '+33 6 87 65 43 21'),
+    (40, 'March', 'Thierry', 'thierry.march@email.com', '+33 6 87 90 45 21'),
+    (41, 'Michel', 'Henri', 'mhenri@email.com', '+33 6 80 69 43 21'),
+    (42, 'Girard', 'Paul', 'paul.girard@email.com', '+33 6 12 34 56 78'),
+    (43, 'Blanc', 'Sandrine', 'sandrine.blanc@email.com', '+33 6 98 76 54 32'),
+    (44, 'Martin', 'François', 'francois.martin@email.com', '+33 6 78 90 12 34'),
+    (45, 'Dufour', 'Martine', 'martine.dufour@email.com', '+33 6 90 12 34 56'); 
 
 -- Insertion de données dans la table vehicule
 INSERT INTO vehicule (numero_immatricule, date_mise_circulation, modele, client_numero)
 VALUES
     (101, '2020-01-15', 'Toyota Camry', 1),
     (102, '2018-05-20', 'Honda Accord', 2),
-    (103, '2019-11-10', 'Ford Focus', 3);
+    (103, '2020-11-10', 'Ford Focus', 3),
+    (104, '2020-10-15', 'Ford Fiesta', 7),
+    (105, '2022-7-12', 'Dacia', 10),
+    (120, '2021-9-07', 'Audi', 11),
+    (106, '2022-08-05', 'Chevrolet Malibu', 12),
+    (107, '2021-03-12', 'Nissan Altima', 14),
+    (108, '2020-11-18', 'Volkswagen Passat' , 40),
+    (109, '2019-07-25', 'Hyundai Elantra' , 5); -- Ajoutez un point-virgule
 
--- Insertion de données dans la table intervention
-INSERT INTO intervention (numero_intervention, date_entree, date_retour, devis, facture)
+
+
+-- Insertion de données dans la table garage avec des numéros de téléphone valides en France
+INSERT INTO garage (numero_garage, nom_garage, adresse_garage, numero_telephone)
 VALUES
-    (1001, '2023-01-02', '2023-01-04', 150.00, 180.00),
-    (1002, '2023-02-15', '2023-02-18', 100.00, 120.00),
-    (1003, '2023-03-20', '2023-03-23', 200.00, 240.00);
+    (201, 'Garage AutoTech', '123 Rue de la Réparation', '+33 1 23 45 67 89'),
+    (202, 'Garage MécanoPro', '456 Avenue des Pièces', '+33 1 45 67 89 01'),
+    (203, 'Garage Express', '789 Boulevard d Entretien', '+33 1 23 45 67 89'),
+    (204, 'Garage SpeedyFix', '456 Rue des Réparateurs', '+33 1 23 45 67 89'),
+    (205, 'Garage RapidCar', '789 Avenue des Dépanneurs', '+33 1 45 67 89 01'),
+    (206, 'Garage TurboMoteur', '012 Boulevard des Experts', '+33 1 23 45 67 89'),
+    (207, 'Garage ProService', '345 Rue des Mécaniciens', '+33 1 23 45 67 89'),
+    (208, 'Garage DirectAuto', '678 Avenue des Techniciens', '+33 1 45 67 89 01'),
+    (209, 'Garage EfficaceCar', '901 Boulevard des Spécialistes', '+33 1 23 45 67 89'),
+    (210, 'Garage TechMéca', '234 Rue des Ingénieurs', '+33 1 45 67 89 01'),
+    (211, 'Garage PerformAuto', '567 Avenue des Professionnels', '+33 1 23 45 67 89'),
+    (212, 'Garage PrestigeMoteur', '890 Boulevard des Experts', '+33 1 45 67 89 01');
+-- Insertion de données dans la table intervention
+INSERT INTO intervention (numero_intervention, date_entree, date_retour, devis, facture, numero_vehicule, numero_garage)
+VALUES
+    (1001, '2023-01-02', '2023-01-04', 150.00, 180.00, 101, 201),
+    (1002, '2023-02-15', '2023-02-18', 100.00, 120.00, 101, 202),
+    (1003, '2023-11-15', '2023-11-27', 120.00, 130.00, 102, 202),    
+    (1004, '2023-03-20', '2023-03-23', 200.00, 240.00, 102, 202),
+    (1005, '2022-03-02', '2022-03-08', 200.00, 240.00, 102, 201),
+    (1006, '2022-02-27', '2022-03-20', 300.00, 340.00, 103, 201),
+    (1007, '2022-02-15', '2022-02-25', 230.00, 240.00, 103, 201),
+    (1008, '2021-07-20', '2021-07-28', 150.00, 180.00, 104, 211),
+    (1009, '2023-04-10', '2023-04-15', 120.00, 150.00, 104, 210),
+    (1010, '2023-05-22', '2023-05-25', 180.00, 220.00, 109, 209),
+    (1011, '2023-07-30', NULL, 130.00, 160.00, 108, 201),
+    (1012, '2023-08-15', NULL, 90.00, 110.00, 107, 208);
+
+
 
 -- Insertion de données dans la table prescription
 INSERT INTO prescription (numero_prescription, description, duree_prevu, statut, date_realisation, vehicule_numero)
 VALUES
     (501, 'Changement d''huile', 4, 'En cours', '2023-01-05', 101),
     (502, 'Remplacement des freins', 3, 'Terminé', '2023-02-18', 102),
-    (503, 'Diagnostic moteur', 2, 'En attente', '2023-03-25', 103);
-
--- Insertion de données dans la table garage
-INSERT INTO garage (numero_garage, nom_garage, adresse_garage, numero_telephone)
-VALUES
-    (201, 'Garage Dupuis', '123 Rue Principale', '555-1234'),
-    (202, 'Garage Martin', '456 Rue Secondaire', '555-5678'),
-    (203, 'Garage Tremblay', '789 Rue Tertiaire', '555-9012');
-
--- Insertion de données dans la table faire
-INSERT INTO faire (garage_numero, id_type)
-VALUES
-    (201, 1),
-    (202, 2),
-    (203, 3);
-
--- Insertion de données dans la table proposer
-INSERT INTO proposer (garage_numero, numero_prescription)
-VALUES
-    (201, 501),
-    (202, 502),
-    (203, 503);
-
--- Insertion de données dans la table concerner
-INSERT INTO concerner (numero_prescription, numero_intervention)
-VALUES
-    (501, 1001),
-    (502, 1002),
-    (503, 1003);
-
-
-
--- Deuxième insertion
-
--- Ajout de données supplémentaires dans la table client
-INSERT INTO client (numero_client, nom_client, prenom_client, adresse_mail, numero_telephone)
-VALUES
-    (13, 'Girard', 'Paul', 'paul.girard@email.com', '+33 6 12 34 56 78'),
-    (14, 'Blanc', 'Sandrine', 'sandrine.blanc@email.com', '+33 6 98 76 54 32'),
-    (41, 'Martin', 'François', 'francois.martin@email.com', '+33 6 78 90 12 34'),
-    (42, 'Dufour', 'Martine', 'martine.dufour@email.com', '+33 6 90 12 34 56'); -- Supprimez le point-virgule en trop
-
--- Ajout de données supplémentaires dans la table vehicule
-INSERT INTO vehicule (numero_immatricule, date_mise_circulation, modele, client_numero)
-VALUES
-    (104, '2022-08-05', 'Chevrolet Malibu', 4),
-    (105, '2021-03-12', 'Nissan Altima', 5),
-    (106, '2020-11-18', 'Volkswagen Passat' , 6),
-    (107, '2019-07-25', 'Hyundai Elantra' , 7); -- Ajoutez un point-virgule
-
--- Ajout de données supplémentaires dans la table intervention
-INSERT INTO intervention (numero_intervention, date_entree, date_retour, devis, facture)
-VALUES
-    (1004, '2023-04-10', '2023-04-15', 120.00, 150.00),
-    (1005, '2023-05-22', '2023-05-25', 180.00, 220.00),
-    (1006, '2023-06-30', '2023-07-05', 130.00, 160.00),
-    (1007, '2023-08-15', '2023-08-20', 90.00, 110.00);
-
--- Ajout de données supplémentaires dans la table prescription
-INSERT INTO prescription (numero_prescription, description, duree_prevu, statut, date_realisation, vehicule_numero)
-VALUES
+    (503, 'Diagnostic moteur', 2, 'En attente', '2023-03-25', 103),
     (504, 'Réparation du système électrique', 5, 'En attente', NULL, 104),
     (505, 'Vérification de la transmission', 3, 'Terminé', '2023-05-25', 105),
     (506, 'Alignement des roues', 2, 'En cours', NULL, 106),
-    (507, 'Entretien du système de refroidissement', 4, 'Terminé', '2023-07-02', 107); -- Ajoutez un point-virgule
+    (507, 'Entretien du système de refroidissement', 4, 'Terminé', '2023-07-02', 107), -- Ajoutez un point-virgule
+    (508, 'Changement d''huile', 4, 'En cours', '2022-01-05', 101),
+    (509, 'Remplacement des freins', 3, 'Terminé', '2022-02-18', 102),
+    (510, 'Diagnostic moteur', 2, 'En attente', '2022-03-25', 103),
+    (511, 'Réparation du système électrique', 5, 'En attente', NULL, 104),
+    (512, 'Vérification de la transmission', 3, 'Terminé', '2022-05-25', 105),
+    (513, 'Alignement des roues', 2, 'En cours', NULL, 106),
+    (514, 'Entretien du système de refroidissement', 4, 'Terminé', '2022-07-02', 107); 
 
--- Ajout de données supplémentaires dans la table garage
-INSERT INTO garage (numero_garage, nom_garage, adresse_garage, numero_telephone)
+
+
+
+INSERT INTO types_interventions (id_type, libelle)
+VALUES 
+    (2, 'peinture'),
+    (1, 'changement de pneus'),
+    (3, 'remplacement d elements'),
+    (4, 'mécanique'),
+    (5, 'tôlerie'),
+    (6, 'vitrerie'),
+    (7, 'rébovation jantes'),
+    (8, 'dépannage');
+
+-- Insertion de données dans la table faire
+INSERT INTO garage_type_interventions (garage_numero, id_type)
 VALUES
-    (204, 'Garage Leblanc', '987 Rue Quaternaire', '555-3456'),
-    (205, 'Garage Gagnon', '654 Rue Cinquième', '555-7890'),
-    (206, 'Garage Rodrigues', '321 Rue Sixième', '555-0987'),
-    (207, 'Garage Laurent', '876 Rue Septième', '555-6543');
+    (201, 1),
+    (201, 2),
+    (201, 3),
+    (201, 4),
+    (201, 5),
+    (202, 1),
+    (202, 2),
+    (202, 5),
+    (202, 6),
+    (203, 3),
+    (203, 4),
+    (203, 6),
+    (203, 7),
+    (205, 1),
+    (205, 2),
+    (206, 7),
+    (212, 1),
+    (212, 2),
+    (212, 6);
+
+
+
+-- Insertion de données dans la table proposer
+INSERT INTO proposer_prescription (garage_numero, numero_prescription)
+VALUES
+    (201, 501),
+    (201, 502),
+    (201, 503),
+    (201, 504),
+    (201, 505),
+
+    (202, 506),
+    (202, 507),
+    (202, 508),
+    (202, 509),
+    (202, 510),
+
+    (203, 511),
+    (203, 512),
+    (203, 513);
+
+
+
 
 -- Ajout de données supplémentaires dans la table faire
-INSERT INTO faire (garage_numero, id_type)
+INSERT INTO garage_type_interventions (garage_numero, id_type)
 VALUES
     (204, 4),
     (205, 5),
@@ -118,7 +159,7 @@ VALUES
     (207, 7);
 
 -- Ajout de données supplémentaires dans la table proposer
-INSERT INTO proposer (garage_numero, numero_prescription)
+INSERT INTO proposer_prescription (garage_numero, numero_prescription)
 VALUES
     (204, 504),
     (205, 505),
@@ -126,50 +167,12 @@ VALUES
     (207, 507);
 
 -- Ajout de données supplémentaires dans la table concerner
-INSERT INTO concerner (numero_prescription, numero_intervention)
+INSERT INTO  prescriptions_par_interventions (numero_prescription, numero_intervention)
 VALUES
     (504, 1004),
     (505, 1005),
     (506, 1006),
-    (507, 1007);
-
--- -- Insertion de données dans la table client
--- INSERT INTO client (numero_client, nom_client, prenom_client, adresse_mail, numero_telephone)
--- SELECT
---     id,
---     CONCAT('Nom', id),
---     CONCAT('Prenom', id),
---     CONCAT('client', id, '@email.com'),
---     CONCAT('+33 6 ', LPAD(FLOOR(RANDOM() * 100000000)::INTEGER, 8, '0'))
--- FROM generate_series(1, 100) as id;
-
--- -- Insertion de données dans la table vehicule
--- INSERT INTO vehicule (numero_immatricule, date_mise_circulation, modele, client_numero)
--- SELECT
---     id,
---     CURRENT_DATE - (id * interval '1 day'),
---     CONCAT('Modele', id),
---     id
--- FROM generate_series(1, 100) as id;
-
--- -- Insertion de données dans la table intervention
--- INSERT INTO intervention (numero_intervention, duree, date_entree, date_retour, devis, facture)
--- SELECT
---     id,
---     FLOOR(RANDOM() * 10)::INTEGER + 1,
---     CURRENT_DATE - (id * interval '2 day'),
---     CURRENT_DATE - ((id - 1) * interval '2 day'),
---     ROUND(RANDOM() * 1000, 2),
---     ROUND(RANDOM() * 1200, 2)
--- FROM generate_series(1, 100) as id;
-
--- -- Insertion de données dans la table prescription
--- INSERT INTO prescription (numero_prescription, description, duree_prevu, statut, date_realisation, vehicule_numero)
--- SELECT
---     id,
---     CONCAT('Description', id),
---     FLOOR(RANDOM() * 10)::INTEGER + 1,
---     CASE WHEN id % 2 = 0 THEN 'En cours' ELSE 'Terminé' END,
---     CURRENT_DATE - (id * interval '3 day'),
-
-
+    (507, 1007),
+    (501, 1001),
+    (502, 1002),
+    (503, 1003);
