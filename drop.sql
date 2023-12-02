@@ -1,18 +1,10 @@
--- Suppression de la table prescription_par_intervention
-DROP TABLE IF EXISTS prescription_par_intervention;
-
--- Suppression de la table concerner
-DROP TABLE IF EXISTS concerner;
-
 -- Suppression de la table proposer
-DROP TABLE IF EXISTS proposer;
+DROP TABLE IF EXISTS proposer_prescription;
 
 -- Suppression de la table faire
-DROP TABLE IF EXISTS faire;
+DROP TABLE IF EXISTS garage_type_interventions;
 
--- Suppression de la table garage
-DROP TABLE IF EXISTS garage;
-
+-- DROP TABLE IF EXISTS 
 -- Suppression de la table prescription
 DROP TABLE IF EXISTS prescription CASCADE;
 
@@ -22,5 +14,10 @@ DROP TABLE IF EXISTS intervention CASCADE;
 -- Suppression de la table vehicule
 DROP TABLE IF EXISTS vehicule CASCADE;
 
+-- Suppression de la table garage
+DROP TABLE IF EXISTS garage;
 -- Suppression de la table client
 DROP TABLE IF EXISTS client CASCADE;
+
+DROP TABLE IF EXISTS prescriptions_par_interventions CASCADE;
+DROP TABLE IF EXISTS types_interventions CASCADE;
