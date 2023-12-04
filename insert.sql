@@ -37,6 +37,17 @@ VALUES
     (109, '2019-07-25', 'Hyundai Elantra' , 5); -- Ajoutez un point-virgule
 
 
+INSERT INTO types_interventions (id_type, libelle)
+VALUES 
+    (2, 'peinture'),
+    (1, 'changement de pneus'),
+    (3, 'remplacement d elements'),
+    (4, 'mécanique'),
+    (5, 'tôlerie'),
+    (6, 'vitrerie'),
+    (7, 'rébovation jantes'),
+    (8, 'dépannage');
+
 
 -- Insertion de données dans la table garage avec des numéros de téléphone valides en France
 INSERT INTO garage (numero_garage, nom_garage, adresse_garage, numero_telephone)
@@ -55,20 +66,20 @@ VALUES
     (212, 'Garage PrestigeMoteur', '890 Boulevard des Experts', '+33 1 45 67 89 01');
 -- Insertion de données dans la table intervention
 
-INSERT INTO intervention (numero_intervention, date_entree, date_retour , duree_prevu, devis, facture, numero_vehicule, numero_garage)
+INSERT INTO intervention (numero_intervention, date_entree, date_retour , duree_prevu, devis, facture, numero_vehicule, numero_garage, id_type)
 VALUES
-    (1001, '2023-01-02', '2023-01-10', 5 ,150.00, 180.00, 101, 201),
-    (1002, '2023-02-15', '2023-02-27', 10, 100.00, 120.00, 101, 202),
-    (1003, '2023-11-15', '2023-11-27', 3, 120.00, 130.00, 102, 202),    
-    (1004, '2023-03-20', '2023-03-23', 2, 200.00, 240.00, 102, 202),
-    (1005, '2022-03-02', '2022-04-08', 25, 200.00, 240.00, 102, 201),
-    (1006, '2022-02-27', '2022-03-20', 28, 300.00, 340.00, 103, 201),
-    (1007, '2022-02-15', '2022-02-25', 4, 230.00, 240.00, 103, 201),
-    (1008, '2021-07-20', '2021-07-28', 6,150.00, 180.00, 104, 211),
-    (1009, '2023-04-10', '2023-04-15', 4, 120.00, 150.00, 104, 210),
-    (1010, '2023-05-22', '2023-05-25', 3, 180.00, 220.00, 109, 209),
-    (1011, '2023-07-30', NULL, 10, 30.00, 160.00, 108, 201),
-    (1012, '2023-08-15', NULL, 17, 90.00, 110.00, 107, 208);
+    (1001, '2023-01-02', '2023-01-10', 5 ,150.00, 180.00, 101, 201, 5),
+    (1002, '2023-02-15', '2023-02-27', 10, 100.00, 120.00, 101, 202, 4),
+    (1003, '2023-11-15', '2023-11-27', 3, 120.00, 130.00, 102, 202, 4),    
+    (1004, '2023-03-20', '2023-03-23', 2, 200.00, 240.00, 102, 202, 2),
+    (1005, '2022-03-02', '2022-04-08', 25, 200.00, 240.00, 102, 201, 4),
+    (1006, '2022-02-27', '2022-03-20', 28, 300.00, 340.00, 103, 201, 1),
+    (1007, '2022-02-15', '2022-02-25', 4, 230.00, 240.00, 103, 201, 1),
+    (1008, '2021-07-20', '2021-07-28', 6,150.00, 180.00, 104, 211, 3),
+    (1009, '2023-04-10', '2023-04-15', 4, 120.00, 150.00, 104, 210, 4),
+    (1010, '2023-05-22', '2023-05-25', 3, 180.00, 220.00, 109, 209, 6),
+    (1011, '2023-07-30', NULL, 10, 30.00, 160.00, 108, 201, 7),
+    (1012, '2023-08-15', NULL, 17, 90.00, 110.00, 107, 208, 8);
 
 
 -- Insertion de données dans la table prescription
@@ -91,17 +102,6 @@ VALUES
 
 
 
-
-INSERT INTO types_interventions (id_type, libelle)
-VALUES 
-    (2, 'peinture'),
-    (1, 'changement de pneus'),
-    (3, 'remplacement d elements'),
-    (4, 'mécanique'),
-    (5, 'tôlerie'),
-    (6, 'vitrerie'),
-    (7, 'rébovation jantes'),
-    (8, 'dépannage');
 
 -- Insertion de données dans la table faire
 INSERT INTO garage_type_interventions (garage_numero, id_type)

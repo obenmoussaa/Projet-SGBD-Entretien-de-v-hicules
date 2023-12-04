@@ -8,11 +8,11 @@ UPDATE vehicule SET modele = 'nouveau_modele' WHERE numero_immatricule = 101;
 UPDATE prescription SET statut = 'Terminé' WHERE numero_prescription = 501;
 
 -- Ajouter une intervention à un client existant
-INSERT INTO intervention (numero_intervention, date_entree, date_retour, devis, facture)
-VALUES (1008, '2023-09-01', '2023-09-05', 120.00, 150.00); -- a modifier
+INSERT INTO intervention (numero_intervention, date_entree, date_retour, duree_prevu, devis, facture, numero_vehicule, numero_garage, id_type)
+VALUES (2000, '2023-09-01', '2023-09-05', 3, 120.00, 150.00,  109, 212, 6); 
 
 INSERT INTO prescriptions_par_interventions (numero_prescription, numero_intervention)
-VALUES (504, 1008);
+VALUES (504, 2000);
 
 -- Modifier le numéro de téléphone d'un garage
 UPDATE garage SET numero_telephone = '555-1234' WHERE numero_garage = 201;
