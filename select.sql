@@ -64,12 +64,12 @@ GROUP BY
 
 -- Le nombre d’heures facturées par mois.
 SELECT
-    EXTRACT(MONTH FROM i.date_retour) AS mois,
-    COALESCE(SUM(i.duree), 0) AS heures_facturees
+    DATE_TRUNC('month', date_retour)::DATE AS mois,
+    COALESCE(SUM(duree), 0) AS heures_facturees
 FROM
-    intervention i
+    intervention
 GROUP BY
-    EXTRACT(MONTH FROM i.date_retour)
+    mois
 ORDER BY
     mois;
 
