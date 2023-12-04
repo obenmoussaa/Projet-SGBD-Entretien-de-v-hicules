@@ -66,9 +66,9 @@ GROUP BY
 SELECT 
     EXTRACT(YEAR FROM date_entree) AS annee, 
     EXTRACT(MONTH FROM date_entree) AS mois, 
-    COALESCE(SUM(EXTRACT(EPOCH FROM (date_retour - date_entree))/3600), 0) AS heures_facturees
+    COALESCE(SUM(i.duree_prevu ), 0) AS heures_facturees
 FROM 
-    intervention
+    intervention i
 GROUP BY 
     annee, mois;
 
@@ -87,7 +87,7 @@ JOIN
 JOIN 
     types_interventions ti ON i.id_type = ti.id_type
 GROUP BY 
-    v.modele
+    v.modele, ti.libelle
 ORDER BY 
     COUNT(*) DESC
-LIMIT 1;
+;
