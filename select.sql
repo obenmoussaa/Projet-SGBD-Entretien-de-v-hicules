@@ -63,30 +63,31 @@ GROUP BY
 
 
 -- Le nombre d’heures facturées par mois.
-SELECT
-    DATE_TRUNC('month', date_retour)::DATE AS mois,
-    COALESCE(SUM(duree), 0) AS heures_facturees
-FROM
+SELECT 
+    EXTRACT(YEAR FROM date_entree) AS annee, 
+    EXTRACT(MONTH FROM date_entree) AS mois, 
+    SUM(duree) AS heures_facturees
+FROM 
     intervention
-GROUP BY
-    mois
-ORDER BY
-    mois;
+GROUP BY 
+    annee, mois;
+
 
 
 
 
 -- La liste des types de véhicules, avec le type d’intervention majoritaire pratiqué sur ces véhicules.
-SELECT
-    v.modele AS type_vehicule,
+SELECT 
+    v.modele, 
     ti.libelle AS type_intervention_majoritaire
-FROM
+FROM 
     vehicule v
-LEFT JOIN
+JOIN 
     intervention i ON v.numero_immatricule = i.numero_vehicule
-LEFT JOIN
+JOIN 
     types_interventions ti ON i.id_type = ti.id_type
-GROUP BY
-    v.modele, ti.libelle
-ORDER BY
-    v.modele;
+GROUP BY 
+    v.modele
+ORDER BY 
+    COUNT(*) DESC
+LIMIT 1;
