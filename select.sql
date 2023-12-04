@@ -66,7 +66,7 @@ GROUP BY
 SELECT 
     EXTRACT(YEAR FROM date_entree) AS annee, 
     EXTRACT(MONTH FROM date_entree) AS mois, 
-    SUM(duree) AS heures_facturees
+    COALESCE(SUM(EXTRACT(EPOCH FROM (date_retour - date_entree))/3600), 0) AS heures_facturees
 FROM 
     intervention
 GROUP BY 
