@@ -75,10 +75,10 @@
             c.numero_client, c.nom_client, c.prenom_client
         ORDER BY
             c.numero_client;";
-    print_requete($connection, $requete);
+   // print_requete($connection, $requete);
     
-    print_requete($connection,$requette2);
-    pg_close($connection);
+    //print_requete($connection,$requette2);
+    //pg_close($connection);
 
     ?>
 </body>
