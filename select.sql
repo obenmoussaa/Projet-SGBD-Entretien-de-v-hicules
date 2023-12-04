@@ -60,7 +60,7 @@ LEFT JOIN
     intervention i ON v.numero_immatricule = i.numero_vehicule
 GROUP BY
     c.numero_client, c.nom_client, c.prenom_client;
-    
+
 
 -- Le nombre d’heures facturées par mois.
 SELECT
@@ -69,9 +69,10 @@ SELECT
 FROM
     intervention i
 GROUP BY
-    mois
+    EXTRACT(MONTH FROM i.date_retour)
 ORDER BY
     mois;
+
 
 
 
