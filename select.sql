@@ -46,5 +46,46 @@ ORDER BY total_depense DESC
 LIMIT 5;
 
 
+--La liste des clients, avec le total des sommes facturées à chacun
+SELECT
+    c.numero_client,
+    c.nom_client,
+    c.prenom_client,
+    COALESCE(SUM(i.facture), 0) AS total_facture
+FROM
+    client c
+LEFT JOIN
+    vehicule v ON c.numero_client = v.client_numero
+LEFT JOIN
+    intervention i ON v.numero_immatricule = i.numero_vehicule
+GROUP BY
+    c.numero_client, c.nom_client, c.prenom_client;
+    
+
+-- Le nombre d’heures facturées par mois.
+SELECT
+    EXTRACT(MONTH FROM i.date_retour) AS mois,
+    COALESCE(SUM(i.duree), 0) AS heures_facturees
+FROM
+    intervention i
+GROUP BY
+    mois
+ORDER BY
+    mois;
 
 
+
+-- La liste des types de véhicules, avec le type d’intervention majoritaire pratiqué sur ces véhicules.
+SELECT
+    v.modele AS type_vehicule,
+    ti.libelle AS type_intervention_majoritaire
+FROM
+    vehicule v
+LEFT JOIN
+    intervention i ON v.numero_immatricule = i.numero_vehicule
+LEFT JOIN
+    types_interventions ti ON i.id_type = ti.id_type
+GROUP BY
+    v.modele, ti.libelle
+ORDER BY
+    v.modele;
