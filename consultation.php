@@ -3,10 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet" media="all" />
+    <link href="style_page.css" rel="stylesheet" media="all" />
     <title>Résultats des requêtes</title>
 </head>
 <body>
+
+<form action="index.php" method="get" class="accueil">
+    <input type="submit" value="Accueil"
+         name="Submit" id="accueil" style="font-weight: bold;"/>
+    </form>
+
 
 <?php
 // index.php
@@ -42,9 +48,9 @@ AND i.date_entree <= TO_DATE('2024-12-31', 'YYYY/MM/DD')";
         <h1>Résultats des requêtes</h1>
     </header>
 
-    <section>
+    <section class="selectionner">
         <form method="post">
-            <label for="choix_client">Choisir la requete :</label>
+            <label for="choix_client">Choisir une requete :</label>
             <select name="choix_client" id="choix_client">
                 <option value="0">Les clients avec le nombre de véhicules qu’ils ont confiés au garage</option>
                 <option value="1">Liste des modèles de véhicule pris en charge lors de l’année écoulée</option>
@@ -54,22 +60,24 @@ AND i.date_entree <= TO_DATE('2024-12-31', 'YYYY/MM/DD')";
         </form>
     </section>
 
+    <section class="affichage_requite">
     <?php
 
-    // Si le formulaire a été soumis
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // // Récupérer l'indice du choix du client
-     $indiceChoisi = $_POST['choix_client'];
-     echo "<div id='result-container'>";
-    if($indiceChoisi == 0 ){
-        print_requete($connection,$requete1);
-    }    
-    else print_requete($connection,$requete2);
-   echo "</div>";
+            // Si le formulaire a été soumis
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // // Récupérer l'indice du choix du client
+            $indiceChoisi = $_POST['choix_client'];
+            echo "<div id='result-container'>";
+            if($indiceChoisi == 0 ){
+                print_requete($connection,$requete1);
+            }    
+            else print_requete($connection,$requete2);
+        echo "</div>";
 
-    
-    pg_close($connection);
-}
+            
+            pg_close($connection);
+        }
     ?>
+    </section>
 </body>
 </html>

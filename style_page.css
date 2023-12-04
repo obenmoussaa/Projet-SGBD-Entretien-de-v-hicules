@@ -1,0 +1,106 @@
+/* style.css */
+
+body {
+    background-color: #E9F1FA; /* Bleu */
+    color: #1a1919; /* Texte en blanc */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Centrer le texte dans le corps */
+}
+
+header, #garage-info, #buttons-section, #additional-info {
+    margin: 20px; /* Ajouter une marge autour des sections pour aérer l'agencement */
+}
+
+h1, h2, p{
+    margin: 0; /* Supprimer les marges par défaut pour un espacement cohérent */
+    color: black;
+}
+
+.ButtonSection {
+    display: flex; /* Utiliser la flexbox pour aligner horizontalement les boutons */
+    justify-content: space-around; /* Espacement égal entre les boutons */
+}
+
+.Button {
+    background-color: #00ABE4; /* Bleu plus foncé pour les boutons */
+    color: #131212;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+.Button button {
+    background-color: #87cfe7; /* Fond blanc pour le texte des boutons */
+    color: #020202; /* Texte en bleu */
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Ajouter des styles spécifiques pour les liens dans les boutons */
+.Button a {
+    text-decoration: none;
+    color: #131212;
+}
+
+/* Ajouter des styles spécifiques pour les liens dans les boutons lorsqu'ils sont survolés */
+.Button a:hover {
+    text-decoration: underline;
+}
+
+
+.image {
+    text-align: center; /* Centre l'image horizontalement */
+}
+
+/* Style pour l'image */
+.image img {
+    max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur de son conteneur */
+    height: auto; /* Maintient le rapport hauteur/largeur de l'image */
+    border-radius: 10px; /* Ajoute un coin arrondi à l'image (ajustez selon vos préférences) */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère à l'image */
+}
+
+.affichage_requite{
+    width: 50%; /* Ajustez la largeur selon vos préférences */
+    margin: 40px auto 0; /* Centre la section horizontalement */
+    display: flex; /* Utilise le modèle de boîte flexible */
+    flex-direction: column; /* Empile les éléments enfants verticalement */
+    justify-content: center; /* Centre verticalement les éléments enfants */
+    align-items: center;
+}
+
+.accueil {
+    margin-left: 20px; /* Ajustez la valeur selon vos besoins pour décaler le formulaire du bord gauche */
+    margin-bottom: 20px; /*Ajoutez un petit espace en dessous du formulaire*/
+    width: 100px; /* Ajustez la valeur selon vos besoins pour définir la largeur du formulaire */
+}
+
+
+
+.choix_client{
+    background-color: #504b4b;
+}
+
+
+.update_text{
+    width: 50%; /* Ajustez la largeur selon vos préférences */
+    margin: 40px auto 0; /* Centre la section horizontalement */
+    display: flex; /* Utilise le modèle de boîte flexible */
+    flex-direction: column; /* Empile les éléments enfants verticalement */
+    justify-content: center; /* Centre verticalement les éléments enfants */
+    align-items: center
+}
+
+.adresse_client{
+    margin-top: 20px;
+}
+.requete_display{
+    margin: auto;
+    text-align: center;
+
+}
