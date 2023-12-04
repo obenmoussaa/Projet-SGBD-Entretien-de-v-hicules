@@ -28,7 +28,7 @@ JOIN intervention i ON v.numero_immatricule = i.numero_vehicule
 WHERE i.date_retour IS NULL;
 
 -- Historique complet des interventions sur un véhicule donné :
-SELECT i.numero_intervention, i.date_entree, i.date_retour, i.kilometrage, i.devis, i.facture
+SELECT i.numero_intervention, i.date_entree, i.date_retour, i.devis, i.facture
 FROM vehicule v
 JOIN intervention i ON v.numero_immatricule = i.numero_vehicule
 WHERE v.numero_immatricule = 101;

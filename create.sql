@@ -32,9 +32,9 @@ CREATE TABLE types_interventions(
 -- Création de la table intervention
 CREATE TABLE intervention (
     numero_intervention INT PRIMARY KEY,
-    duree INT,
     date_entree DATE,
     date_retour DATE,
+    duree_prevu INT,
     devis DECIMAL(10, 2),
     facture DECIMAL(10, 2),
     numero_vehicule INT,
@@ -50,7 +50,7 @@ CREATE TABLE intervention (
 CREATE TABLE prescription (
     numero_prescription INT PRIMARY KEY,
     description TEXT,
-    duree_prevu INTEGER,
+    duree INTEGER,
     statut VARCHAR(50),
     date_realisation DATE,
     vehicule_numero INT,

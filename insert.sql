@@ -54,25 +54,25 @@ VALUES
     (211, 'Garage PerformAuto', '567 Avenue des Professionnels', '+33 1 23 45 67 89'),
     (212, 'Garage PrestigeMoteur', '890 Boulevard des Experts', '+33 1 45 67 89 01');
 -- Insertion de données dans la table intervention
-INSERT INTO intervention (numero_intervention, date_entree, date_retour, devis, facture, numero_vehicule, numero_garage)
-VALUES
-    (1001, '2023-01-02', '2023-01-04', 150.00, 180.00, 101, 201),
-    (1002, '2023-02-15', '2023-02-18', 100.00, 120.00, 101, 202),
-    (1003, '2023-11-15', '2023-11-27', 120.00, 130.00, 102, 202),    
-    (1004, '2023-03-20', '2023-03-23', 200.00, 240.00, 102, 202),
-    (1005, '2022-03-02', '2022-03-08', 200.00, 240.00, 102, 201),
-    (1006, '2022-02-27', '2022-03-20', 300.00, 340.00, 103, 201),
-    (1007, '2022-02-15', '2022-02-25', 230.00, 240.00, 103, 201),
-    (1008, '2021-07-20', '2021-07-28', 150.00, 180.00, 104, 211),
-    (1009, '2023-04-10', '2023-04-15', 120.00, 150.00, 104, 210),
-    (1010, '2023-05-22', '2023-05-25', 180.00, 220.00, 109, 209),
-    (1011, '2023-07-30', NULL, 130.00, 160.00, 108, 201),
-    (1012, '2023-08-15', NULL, 90.00, 110.00, 107, 208);
 
+INSERT INTO intervention (numero_intervention, date_entree, date_retour , duree_prevu, devis, facture, numero_vehicule, numero_garage)
+VALUES
+    (1001, '2023-01-02', '2023-01-10', 5 ,150.00, 180.00, 101, 201),
+    (1002, '2023-02-15', '2023-02-27', 10, 100.00, 120.00, 101, 202),
+    (1003, '2023-11-15', '2023-11-27', 3, 120.00, 130.00, 102, 202),    
+    (1004, '2023-03-20', '2023-03-23', 2, 200.00, 240.00, 102, 202),
+    (1005, '2022-03-02', '2022-04-08', 25, 200.00, 240.00, 102, 201),
+    (1006, '2022-02-27', '2022-03-20', 28, 300.00, 340.00, 103, 201),
+    (1007, '2022-02-15', '2022-02-25', 4, 230.00, 240.00, 103, 201),
+    (1008, '2021-07-20', '2021-07-28', 6,150.00, 180.00, 104, 211),
+    (1009, '2023-04-10', '2023-04-15', 4, 120.00, 150.00, 104, 210),
+    (1010, '2023-05-22', '2023-05-25', 3, 180.00, 220.00, 109, 209),
+    (1011, '2023-07-30', NULL, 10, 30.00, 160.00, 108, 201),
+    (1012, '2023-08-15', NULL, 17, 90.00, 110.00, 107, 208);
 
 
 -- Insertion de données dans la table prescription
-INSERT INTO prescription (numero_prescription, description, duree_prevu, statut, date_realisation, vehicule_numero)
+INSERT INTO prescription (numero_prescription, description, duree, statut, date_realisation, vehicule_numero)
 VALUES
     (501, 'Changement d''huile', 4, 'En cours', '2023-01-05', 101),
     (502, 'Remplacement des freins', 3, 'Terminé', '2023-02-18', 102),
@@ -148,28 +148,12 @@ VALUES
     (203, 513);
 
 
-
-
--- Ajout de données supplémentaires dans la table faire
-INSERT INTO garage_type_interventions (garage_numero, id_type)
-VALUES
-    (204, 4),
-    (205, 5),
-    (206, 6),
-    (207, 7);
-
--- Ajout de données supplémentaires dans la table proposer
-INSERT INTO proposer_prescription (garage_numero, numero_prescription)
-VALUES
-    (204, 504),
-    (205, 505),
-    (206, 506),
-    (207, 507);
-
 -- Ajout de données supplémentaires dans la table concerner
 INSERT INTO  prescriptions_par_interventions (numero_prescription, numero_intervention)
 VALUES
     (504, 1004),
+    (504, 1005),
+    (504, 1006),
     (505, 1005),
     (506, 1006),
     (507, 1007),
