@@ -66,9 +66,9 @@ GROUP BY
 SELECT 
     EXTRACT(YEAR FROM date_entree) AS annee, 
     EXTRACT(MONTH FROM date_entree) AS mois, 
-    COALESCE(SUM(EXTRACT(EPOCH FROM (date_retour - date_entree))/3600), 0) AS heures_facturees
+    COALESCE(SUM(i.duree_prevu ), 0) AS heures_facturees
 FROM 
-    intervention
+    intervention i
 GROUP BY 
     annee, mois;
 
@@ -87,7 +87,40 @@ JOIN
 JOIN 
     types_interventions ti ON i.id_type = ti.id_type
 GROUP BY 
-    v.modele
+    v.modele, ti.libelle
 ORDER BY 
     COUNT(*) DESC
-LIMIT 1;
+;
+
+--Nombre d'interventions par véhicule :
+select v.numero_immatricule,
+        COUNT(i.numero_intervention) as nombre_intervention
+FROM
+    vehicule v
+LEFT JOIN 
+    intervention i ON v.numero_immatricule = i.numero_vehicule
+GROUP BY 
+    v.numero_immatricule
+ORDER BY 
+    nombre_intervention DESC ;
+
+--Durée moyenne des interventions par garage :
+SELECT 
+    g.numero_garage,
+    AVG(i.duree_prevu ) AS duree_moyenne_inteventions
+FROM
+    garage g
+LEFT JOIN 
+    intervention i on i.numero_garage=g.numero_garage
+GROUP BY 
+    g.numero_garage ;
+
+--Coût total des interventions par garage :
+SELECT
+    g.numero_garage,
+    COALESCE(SUM(i.facture),0) as cout_totale_interventions
+FROM
+    garage g
+LEFT JOIN intervention i ON g.numero_garage=i.numero_garage
+GROUP BY
+    g.numero_garage;
