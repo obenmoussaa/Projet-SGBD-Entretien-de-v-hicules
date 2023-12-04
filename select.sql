@@ -91,3 +91,36 @@ GROUP BY
 ORDER BY 
     COUNT(*) DESC
 ;
+
+--Nombre d'interventions par véhicule :
+select v.numero_immatricule,
+        COUNT(i.numero_intervention) as nombre_intervention
+FROM
+    vehicule v
+LEFT JOIN 
+    intervention i ON v.numero_immatricule = i.numero_vehicule
+GROUP BY 
+    v.numero_immatricule
+ORDER BY 
+    nombre_intervention DESC ;
+
+--Durée moyenne des interventions par garage :
+SELECT 
+    g.numero_garage,
+    AVG(i.duree_prevu ) AS duree_moyenne_inteventions
+FROM
+    garage g
+LEFT JOIN 
+    intervention i on i.numero_garage=g.numero_garage
+GROUP BY 
+    g.numero_garage ;
+
+--Coût total des interventions par garage :
+SELECT
+    g.numero_garage,
+    COALESCE(SUM(i.facture),0) as cout_totale_interventions
+FROM
+    garage g
+LEFT JOIN intervention i ON g.numero_garage=i.numero_garage
+GROUP BY
+    g.numero_garage;
