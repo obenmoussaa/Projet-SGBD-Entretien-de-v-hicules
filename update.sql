@@ -1,9 +1,6 @@
 -- Modifier l'adresse mail d'un client
 UPDATE client SET adresse_mail = 'nouvelle_adresse@email.com' WHERE numero_client = 1;
 
--- Modifier le modèle d'un véhicule
-UPDATE vehicule SET modele = 'nouveau_modele' WHERE numero_immatricule = 101;
-
 -- Changer le statut d'une prescription
 UPDATE prescription SET statut = 'Terminé' WHERE numero_prescription = 501;
 
@@ -18,24 +15,36 @@ VALUES (504, 2000);
 UPDATE garage SET numero_telephone = '555-1234' WHERE numero_garage = 201;
 
 
--- Ajout de données
-INSERT INTO garage (numero_garage, nom_garage, adresse_garage, numero_telephone)
-VALUES (208, 'Garage Dupont', '234 Rue Huitième', '555-4321');
+--Ajouter un nouveau type d'intervention 
+INSERT INTO types_interventions (id_type, libelle) VALUES (10, 'Révision générale');
 
-INSERT INTO garage_type_interventions (id_type) 
-VALUES (8);
+--Supprimer un type d'intervention 
+DELETE FROM types_interventions WHERE id_type = 10;
+
+
+-- Ajouter une nouvelle prescription pour un véhicule existant 
+INSERT INTO prescription (numero_prescription, description, duree_prevu, statut, date_realisation, numero_vehicule)
+VALUES (504, 'Réparation de la climatisation', 3, 'En attente', NULL, 101);
+
 
 -- Suppression de données
 DELETE FROM client WHERE numero_client = 1;
 
 DELETE FROM intervention WHERE numero_intervention = 1008;
 
+
+--Supprimer un client et tous ses véhicules associés :
+DELETE FROM client WHERE numero_client = 1;
+DELETE FROM vehicule WHERE client_numero = 1;
+
+
+
 -- Modification de données
 UPDATE intervention SET devis = 200.00 WHERE numero_intervention = 1001;
-
 UPDATE prescription SET statut = 'En cours' WHERE statut = 'En attente';
 
 -- Requêtes utiles pour la gestion
+
 -- Liste tous les clients avec leurs véhicules associés
 SELECT client.*, vehicule.*
 FROM client
