@@ -1,3 +1,8 @@
+--  Liste des interventions prévues dans les deux mois.
+SELECT *
+FROM intervention
+WHERE date_entree BETWEEN CURRENT_DATE AND CURRENT_DATE + 60; 
+
 -- Liste des clients avec le nombre de véhicules qu’ils ont confiés au garage
 SELECT
     c.numero_client,
