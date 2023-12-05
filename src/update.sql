@@ -12,7 +12,7 @@ INSERT INTO prescriptions_par_interventions (numero_prescription, numero_interve
 VALUES (504, 2000);
 
 -- Modifier le numéro de téléphone d'un garage
-UPDATE garage SET numero_telephone = '+33 6 09 87 65 43' WHERE numero_garage = 201;
+UPDATE garage SET numero_telephone = '+33666641798' WHERE numero_garage = 201;
 
 
 --Ajouter un nouveau type d'intervention 
@@ -21,9 +21,8 @@ INSERT INTO types_interventions (id_type, libelle) VALUES (10, 'Révision géné
 --Supprimer un type d'intervention 
 DELETE FROM types_interventions WHERE id_type = 10;
 
-
 -- Ajouter une nouvelle prescription pour un véhicule existant 
-INSERT INTO prescription (numero_prescription, description, duree_prevu, statut, date_realisation, numero_vehicule)
+INSERT INTO prescription (numero_prescription, description, duree, statut, date_realisation, numero_vehicule)
 VALUES (504, 'Réparation de la climatisation', 3, 'En attente', NULL, 101);
 
 
@@ -38,7 +37,6 @@ DELETE FROM client WHERE numero_client = 1;
 DELETE FROM vehicule WHERE client_numero = 1;
 
 
-
 -- Modification de données
 UPDATE intervention SET devis = 200.00 WHERE numero_intervention = 1001;
 UPDATE prescription SET statut = 'En cours' WHERE statut = 'En attente';
@@ -50,13 +48,4 @@ SELECT client.*, vehicule.*
 FROM client
 LEFT JOIN vehicule ON client.numero_client = vehicule.client_numero;
 
--- Calcul du montant total facturé par garage
-SELECT garage.nom_garage, SUM(intervention.facture) AS montant_total
-FROM garage
-JOIN garage_type_interventions ON garage.numero_garage = garage_type_interventions.garage_numero
-JOIN proposer_prescription ON garage_type_interventions.id_type = proposer_prescription.id_type
-JOIN prescription ON proposer_prescription.numero_prescription = prescription.numero_prescription
-JOIN prescriptions_par_interventions ON prescription.numero_prescription = prescriptions_par_interventions.numero_prescription
-JOIN intervention ON prescriptions_par_interventions.numero_intervention = intervention.numero_intervention
-GROUP BY garage.nom_garage;
 

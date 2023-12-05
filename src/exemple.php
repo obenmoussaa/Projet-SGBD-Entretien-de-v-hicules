@@ -37,6 +37,9 @@
         }
         return;
     }
+    ?>
+    <section class="requete_display">
+        <?php
     //cette focntion affiche le resultat d une requtte
     function print_requete($connection, $requete)
     {
@@ -59,6 +62,9 @@
         }
 
     }
+    ?>
+    </section>
+    <?php
 
     // Utilisation de la fonction print_requete avec votre requête
     $requete = "SELECT * FROM client;";
