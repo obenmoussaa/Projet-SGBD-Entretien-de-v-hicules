@@ -5,7 +5,6 @@
 </head>
 
 <body>
-    <h2>Exemple de requ&ecirc;te php PostgreSQL</h2>
     <?php
     // error_reporting(E_ALL);
     // ini_set('display_errors', 1);

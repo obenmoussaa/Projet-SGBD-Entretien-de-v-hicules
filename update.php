@@ -11,6 +11,7 @@
 <form action="index.php" method="get" class="accueil">
     <input type="submit" value="Accueil" name="Submit" id="accueil" style="font-weight: bold;">
 </form>
+<h2>Exemple de requête de mise à jour</h2>
 
 <?php
 // index.php
@@ -21,14 +22,14 @@ include "connect_pg.php";
 ?>
 
 <section class="update_text">
-    <p> Cette requete c'est pour changer l'adresse email d'un utilisateur </p>
+    <p> Cette requête permet  de changer l'adresse email d'un utilisateur </p>
 </section>
 
 <form action="" method="post" class="adresse_client">
     <label for="numero_client">Entrez un numéro client :</label>
     <input type="text" id="numero_client" name="numero_client" required>
 
-    <label for="email">Entrez votre adresse e-mail :</label>
+    <label for="email">Entrez une adresse e-mail :</label>
     <input type="email" id="email" name="email" required>
 
     <input type="submit" value="Envoyer">
@@ -40,7 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"]) && isset($_PO
   // Récupère l'adresse e-mail et le numéro saisis par l'utilisateur
   $email = $_POST["email"];
   $numero = $_POST["numero_client"];
-
+  if($numero>45) echo "essayez avec un numéro entre 1 et 45";
+    else {
   // Prépare et exécute la requête d'UPDATE
   $requete = "UPDATE client SET adresse_mail='" . htmlspecialchars($email) . "' WHERE numero_client='" . htmlspecialchars($numero) . "'";
   $result = pg_query($connection, $requete);
@@ -59,17 +61,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"]) && isset($_PO
   
   // Ferme la connexion
   pg_close($connection);
+    }
 }
 ?>
 
 <section class="update_text">
-    <p> Cette requete c'est pour changer le statut d'une prescription </p>
+    <p> Cette requete permet de changer le statut d'une prescription </p>
 </section>
 <form action="" method="post" class="prescription">
     <label for="numero">Entrez le numéro de la prescription :</label>
     <input type="text" id="numero" name="numero" required>
 
-    <label for="status">Status :</label>
+    <label for="status">Entrez le nouveau statut :</label>
     <input type="text" id="status" name="status" required>
 
     <input type="submit" value="Envoyer">
@@ -82,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"]) && isset($_PO
       $status = $_POST["status"];
       $numero = $_POST["numero"];
         if(htmlspecialchars($numero)<501 || htmlspecialchars($numero)>514 || ( strcmp(htmlspecialchars($status),'En attente')!=0 && strcmp(htmlspecialchars($status),'Terminé')))
-          echo "les données sont invalides, essayez avec un numéro entre 501 et 514, le status parmi ['En attente', 'Terminé] ";
+          echo "les données sont invalides, essayez avec un numéro entre 501 et 514, le statut parmi ['En attente', 'Terminé] ";
         else{
       // Prépare et exécute la requête d'UPDATE
       $requete = "UPDATE prescription SET statut = '" . htmlspecialchars($status) . "' WHERE numero_prescription ='" . htmlspecialchars($numero) . "'";
