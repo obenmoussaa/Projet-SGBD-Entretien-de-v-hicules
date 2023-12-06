@@ -1,10 +1,10 @@
 -- Création de la table client
 CREATE TABLE client (
     numero_client INTEGER PRIMARY KEY,
-    nom_client VARCHAR(50),
+    nom_client VARCHAR(50) NOT NULL CHECK (nom_client <> ''),
     prenom_client VARCHAR(50),
-    adresse_mail VARCHAR(100),
-    numero_telephone VARCHAR(20)
+    addresse_mail VARCHAR(100),
+    numero_telephone VARCHAR(20) CHECK ((numero_telephone IS NULL) OR (numero_telephone LIKE '+33%'))
 );
 
 -- Création de la table vehicule
@@ -32,8 +32,8 @@ CREATE TABLE types_interventions(
 -- Création de la table intervention
 CREATE TABLE intervention (
     numero_intervention INT PRIMARY KEY,
-    date_entree DATE,
-    date_retour DATE,
+    date_entree DATE ,
+    date_retour DATE ,
     duree_prevu INT,
     devis DECIMAL(10, 2),
     facture DECIMAL(10, 2),
@@ -42,7 +42,8 @@ CREATE TABLE intervention (
     id_type INT,
     FOREIGN KEY (numero_vehicule) REFERENCES vehicule(numero_immatricule),
     FOREIGN KEY (id_type) REFERENCES types_interventions(id_type),
-    FOREIGN KEY (numero_garage) REFERENCES garage(numero_garage)
+    FOREIGN KEY (numero_garage) REFERENCES garage(numero_garage),
+    CONSTRAINT date_valide CHECK ((date_entree IS NULL AND date_retour IS NULL) OR (date_entree <= date_retour))
 );
 
 
@@ -69,8 +70,8 @@ CREATE TABLE garage_type_interventions (
 
 -- Création de la table proposer
 CREATE TABLE proposer_prescription (
-    garage_numero INTEGER,
-    numero_prescription INTEGER,
+    garage_numero INTEGER NOT NULL,
+    numero_prescription INTEGER NOT NULL,
     PRIMARY KEY (garage_numero, numero_prescription),
     FOREIGN KEY (garage_numero) REFERENCES garage(numero_garage),
     FOREIGN KEY (numero_prescription) REFERENCES prescription(numero_prescription)
@@ -78,8 +79,8 @@ CREATE TABLE proposer_prescription (
 
 -- Création de la table proposer
 CREATE TABLE prescriptions_par_interventions (
-    numero_intervention INTEGER,
-    numero_prescription INTEGER,
+    numero_intervention INTEGER NOT NULL,
+    numero_prescription INTEGER NOT NULL,
     PRIMARY KEY (numero_intervention, numero_prescription),
     FOREIGN KEY (numero_intervention) REFERENCES intervention(numero_intervention),
     FOREIGN KEY (numero_prescription) REFERENCES prescription(numero_prescription)

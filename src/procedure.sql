@@ -3,7 +3,7 @@
 CREATE OR REPLACE PROCEDURE modifier_adresse_mail(p_numero_client INT, p_nouvelle_adresse_mail VARCHAR) AS
 $$
 BEGIN
-    UPDATE client SET adresse_mail = p_nouvelle_adresse_mail WHERE numero_client = p_numero_client;
+    UPDATE client SET addresse_mail = p_nouvelle_adresse_mail WHERE numero_client = p_numero_client;
 END;
 $$
 LANGUAGE plpgsql;
@@ -50,7 +50,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Exécution : 
-CALL ajouter_intervention(2000, '2023-09-01', '2023-09-05', 3, 120.00, 150.00, 109, 212, 6, 504);
+CALL ajouter_intervention(2001, '2023-09-01', '2023-09-05', 3, 120.00, 150.00, 109, 212, 6, 504);
 
 
 -- ----------------------------------------------------------------------------------------------------------------------------------------
@@ -103,6 +103,6 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- Exécution:
-CALL ajouter_prescription(504, 'Réparation de la climatisation', 3, 'En attente', NULL, 101);
+CALL ajouter_prescription(530, 'Réparation de la climatisation', 3, 'En attente', NULL, 101);
 
 

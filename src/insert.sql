@@ -1,6 +1,6 @@
 
 -- Insertion de données dans la table client
-INSERT INTO client (numero_client, nom_client, prenom_client, adresse_mail, numero_telephone)
+INSERT INTO client (numero_client, nom_client, prenom_client, addresse_mail, numero_telephone)
 VALUES
     (1, 'Dupont', 'Jean', 'jean.dupont@email.com', '+33 6 12 34 56 78'),
     (2, 'Martin', 'Marie', 'marie.martin@email.com', '+33 6 98 76 54 32'),
@@ -34,7 +34,7 @@ VALUES
     (106, '2022-08-05', 'Chevrolet Malibu', 12),
     (107, '2021-03-12', 'Nissan Altima', 14),
     (108, '2020-11-18', 'Volkswagen Passat' , 40),
-    (109, '2019-07-25', 'Hyundai Elantra' , 5); -- Ajoutez un point-virgule
+    (109, '2019-07-25', 'Hyundai Elantra' , 5); 
 
 
 INSERT INTO types_interventions (id_type, libelle)
@@ -78,8 +78,11 @@ VALUES
     (1008, '2021-07-20', '2021-07-28', 6,150.00, 180.00, 104, 211, 3),
     (1009, '2023-04-10', '2023-04-15', 4, 120.00, 150.00, 104, 210, 4),
     (1010, '2023-05-22', '2023-05-25', 3, 180.00, 220.00, 109, 209, 6),
-    (1011, '2023-07-30', NULL, 10, 30.00, 160.00, 108, 201, 7),
-    (1012, '2023-08-15', NULL, 17, 90.00, 110.00, 107, 208, 8);
+    (1011, '2023-12-29', NULL, 10, 30.00, 160.00, 108, 201, 7),
+    (1012, '2023-12-25', NULL, 17, 90.00, 110.00, 107, 208, 8),
+    (1013, '2024-01-07', NULL, 15, 30.00, 160.00, 108, 201, 7),
+    (1014, '2024-01-09', NULL, 3, 30.00, 160.00, 108, 201, 7),
+    (1015, '2024-07-15', NULL, 20, 30.00, 160.00, 108, 201, 1);
 
 
 -- Insertion de données dans la table prescription
